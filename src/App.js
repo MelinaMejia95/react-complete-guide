@@ -9,7 +9,8 @@ class App extends Component {
       { name: 'Max', age: 28 },
       { name: 'Manu', age: 29 },
       { name: 'Stephanie', age: 26 }
-    ]
+    ],
+    showPersons: false
   }
 
   switchNameHandler = (newName) => {
@@ -34,6 +35,11 @@ class App extends Component {
     })
   }
 
+  tooglePersonHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({showPersons: !doesShow})
+  }
+
   render() {
     const style = {
       backgroundColor: 'White',
@@ -43,24 +49,38 @@ class App extends Component {
       cursor: "pointer"
     }
 
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+            <Person 
+              name={this.state.persons[0].name} 
+              age={this.state.persons[0].age}/>
+            <Person 
+              name={this.state.persons[1].name} 
+              age={this.state.persons[1].age}
+              click={this.switchNameHandler.bind(this, 'Max!')}
+              changed={this.nameChangedHandler}>My Hobbies: Racing {/* Use bind instead*/}
+            </Person>
+            <Person 
+              name={this.state.persons[2].name} 
+              age={this.state.persons[2].age}/>
+            
+          </div> 
+      );
+    }
+
     return (
       <div className="App">
         <h1>Hi!</h1>
-        <button 
+        {/* <button 
           style={style} 
-          onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button> {/* Try not to use it, it can be inefficient  */}
-        <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age}/>
-        <Person 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this, 'Max!')}
-          changed={this.nameChangedHandler}>My Hobbies: Racing {/* Use bind instead*/}
-        </Person>
-        <Person 
-          name={this.state.persons[2].name} 
-          age={this.state.persons[2].age}/>
+          onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button> */} {/* Try not to use it, it can be inefficient  */}
+        <button style={style}
+        onClick={this.tooglePersonHandler}>Toogle Person</button>
+       {persons}
+          
       </div>
     );
     //return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'HI!'))
