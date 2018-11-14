@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person'
 
 class App extends Component {
@@ -54,12 +55,18 @@ class App extends Component {
   }
 
   render() {
+
     const style = {
-      backgroundColor: 'White',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: "1px solid blue",
       padding: "8px",
-      cursor: "pointer"
+      cursor: "pointer",
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     }
 
     let persons = null;
@@ -89,22 +96,37 @@ class App extends Component {
           
         </div> 
       );
+      style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      };
+    }
+
+    let classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push('red'); //classes = ['red']
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push('bold'); //classes = ['red', blod']
     }
 
     return (
-      <div className="App">
-        <h1>Hi!</h1>
-        {/* <button 
-          style={style} 
-          onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button> */} {/* Try not to use it, it can be inefficient  */}
-        <button style={style}
-        onClick={this.tooglePersonHandler}>Toogle Person</button>
-       {persons}
-          
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi!</h1>
+          <p className={classes.join(' ')}>This is really working!</p>
+          {/* <button 
+            style={style} 
+            onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button> */} {/* Try not to use it, it can be inefficient  */}
+          <button style={style}
+          onClick={this.tooglePersonHandler}>Toogle Person</button>
+        {persons}
+        </div>
+      </StyleRoot>
     );
     //return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'HI!'))
   }
 }
 
-export default App;
+export default Radium(App);
