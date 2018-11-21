@@ -55,16 +55,8 @@ class App extends Component {
 
   render() {
 
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer",
-    }
-
     let persons = null;
+    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
@@ -91,7 +83,9 @@ class App extends Component {
           
         </div> 
       );
-      style.backgroundColor = 'red';
+      
+      btnClass = classes.Red;
+
     }
 
     let assignedClasses = [];
@@ -109,8 +103,7 @@ class App extends Component {
           {/* <button 
             style={style} 
             onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button> */} {/* Try not to use it, it can be inefficient  */}
-          <button style={style}
-          onClick={this.tooglePersonHandler}>Toogle Person</button>
+          <button className={btnClass} onClick={this.tooglePersonHandler}>Toogle Person</button>
         {persons}
         </div>
     );
