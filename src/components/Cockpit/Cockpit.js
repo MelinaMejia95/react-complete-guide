@@ -11,7 +11,6 @@ const cockpit = (props) => {
         btnClass = classes.Red;
     }
 
-
     if (props.persons.length <= 2) {
       assignedClasses.push(classes.red); //classes = ['red']
     }
@@ -21,7 +20,7 @@ const cockpit = (props) => {
 
     return (
         <div className={classes.Cockpit}>
-            <h1>Hi!</h1>
+            <h1>{props.appTitle}</h1>
             <p className={assignedClasses.join(' ')}>This is really working!</p>
             <button className={btnClass} onClick={props.clicked}>Toogle Person</button>
         </div>
