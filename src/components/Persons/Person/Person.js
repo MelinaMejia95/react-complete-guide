@@ -4,18 +4,20 @@ import classes from './Person.css';
 
 class Person extends Component {
 
+    /*Creation lifecycle*/
+
     constructor (props) {
         super(props);
         console.log('[Person.js] Inside Constructor', props);
       }
     
-      componentWillMount() {
+    componentWillMount() {
         console.log('[Person.js] Inside componentWillMount()');    
-      }
-    
-      componentDidMount() {
+    }
+
+    componentDidMount() {
         console.log('[Person.js] Inside componentDidMount()');
-      }
+    }    
 
     render () {
         console.log('[Person.js] Inside render()');
