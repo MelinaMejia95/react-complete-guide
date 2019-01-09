@@ -20,6 +20,7 @@ const cockpit = (props) => {
     }
 
     return (
+        /*You can use <> instead*/
         <Aux>
             <h1>{props.appTitle}</h1>
             <p className={assignedClasses.join(' ')}>This is really working!</p>
